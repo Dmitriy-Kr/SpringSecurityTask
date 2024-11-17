@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "608589ce-4b16-432d-8488-51fedb314059",
+		"name": "Test create Training",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24949621"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"trainingName\": \"box\",\r\n        \"trainingDay\": \"2024-12-22\",\r\n        \"trainingType\": \"fitness\",\r\n        \"trainingDuration\": 120,\r\n        \"trainerUsername\": \"Kathleen.Carr\",\r\n        \"traineeUsername\": \"Dave.Batista\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/training"
+			},
+			"response": []
+		},
+		{
+			"name": "Login Kathleen.Carr",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"Denis\",\r\n    \"lastname\": \"Rodman\",\r\n    \"specialization\": \"yoga\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/login?username=Kathleen.Carr&password=7545019305",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Kathleen.Carr"
+						},
+						{
+							"key": "password",
+							"value": "7545019305"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Dave.Batista",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"Denis\",\r\n    \"lastname\": \"Rodman\",\r\n    \"specialization\": \"yoga\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/login?username=Kathleen.Carr&password=7545019305",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Kathleen.Carr"
+						},
+						{
+							"key": "password",
+							"value": "7545019305"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

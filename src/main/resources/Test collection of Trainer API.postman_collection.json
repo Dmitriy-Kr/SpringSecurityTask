@@ -1,0 +1,227 @@
+{
+	"info": {
+		"_postman_id": "edb6fde9-190e-4473-9a68-b1c2373aa541",
+		"name": "Test collection of Trainer API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24949621"
+	},
+	"item": [
+		{
+			"name": "Register new trainer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"Denis\",\r\n    \"lastname\": \"Rodman\",\r\n    \"specialization\": \"yoga\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/trainer"
+			},
+			"response": []
+		},
+		{
+			"name": "Login Coleman.Yates",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"Denis\",\r\n    \"lastname\": \"Rodman\",\r\n    \"specialization\": \"yoga\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/trainer?username=Coleman.Yates",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainer"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Coleman.Yates"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find trainer by username Coleman.Yates",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"Denis\",\r\n    \"lastname\": \"Rodman\",\r\n    \"specialization\": \"yoga\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/trainer?username=Coleman.Yates",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainer"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Coleman.Yates"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update trainer Coleman.Yates",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"Denis\",\r\n    \"lastname\": \"Rodman\",\r\n    \"specialization\": \"yoga\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/trainer?username=Coleman.Yates",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainer"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Coleman.Yates"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change trainer status for Coleman.Yates",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"Denis\",\r\n    \"lastname\": \"Rodman\",\r\n    \"specialization\": \"yoga\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/trainer/3/status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainer",
+						"3",
+						"status"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Coleman.Yates",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Trainer Trainings List for Coleman.Yates",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"Denis\",\r\n    \"lastname\": \"Rodman\",\r\n    \"specialization\": \"yoga\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/trainer/trainings?username=Coleman.Yates&fromDate=2024-10-21&toDate=2024-11-21",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainer",
+						"trainings"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Coleman.Yates"
+						},
+						{
+							"key": "fromDate",
+							"value": "2024-10-21"
+						},
+						{
+							"key": "toDate",
+							"value": "2024-11-21"
+						},
+						{
+							"key": "traineeName",
+							"value": "Shannon",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

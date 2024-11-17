@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "7ab4723f-e098-45fa-89c3-e5fe8060213b",
+		"name": "Test get all trainingTypes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24949621"
+	},
+	"item": [
+		{
+			"name": "Login Kathleen.Carr",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"Denis\",\r\n    \"lastname\": \"Rodman\",\r\n    \"specialization\": \"yoga\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/login?username=Kathleen.Carr&password=7545019305",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Kathleen.Carr"
+						},
+						{
+							"key": "password",
+							"value": "7545019305"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all trainingTypes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"Denis\",\r\n    \"lastname\": \"Rodman\",\r\n    \"specialization\": \"yoga\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/training-type/all"
+			},
+			"response": []
+		}
+	]
+}

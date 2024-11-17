@@ -1,0 +1,518 @@
+{
+	"info": {
+		"_postman_id": "e2706e06-601b-4a47-a643-b24581deec71",
+		"name": "Test collection of Trainee API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24949621"
+	},
+	"item": [
+		{
+			"name": "Find trainee by Username Mari.Doyle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trainee?username=Mari.Doyle",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainee"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Mari.Doyle"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Mari.Doyle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/login?username=Mari.Doyle&password=1753799703",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Mari.Doyle"
+						},
+						{
+							"key": "password",
+							"value": "1753799703"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new trainee",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"Anton\",\r\n    \"lastname\": \"Huge\",\r\n    \"dateOfBirth\": \"1982-10-03\",\r\n    \"address\": \"15 Michael Road, Springville, Verginia, 23399\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/trainee",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainee"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Mari.Doyle",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/login?username=Anton.Huge&password=mD%23%269doVE7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Anton.Huge"
+						},
+						{
+							"key": "password",
+							"value": "mD%23%269doVE7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find trainee by Username 2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trainee?username=Mari.Doyle",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainee"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Mari.Doyle"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update trainee",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"Anton\",\r\n    \"lastname\": \"Huge\",\r\n    \"dateOfBirth\": \"1982-10-03\",\r\n    \"address\": \"15 Michael Road, Springville, Verginia, 23399\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/trainee",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainee"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Mari.Doyle",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find trainee by Username 3",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trainee?username=Mari.Doyle",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainee"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Mari.Doyle"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete trainee",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"Anton\",\r\n    \"lastname\": \"Huge\",\r\n    \"dateOfBirth\": \"1982-10-03\",\r\n    \"address\": \"15 Michael Road, Springville, Verginia, 23399\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/trainee?username=Anton.Huge",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainee"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Anton.Huge"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get not assigned on trainee active trainers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trainee/trainers-no-assigned?username=Shannon.Velazquez",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainee",
+						"trainers-no-assigned"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Shannon.Velazquez"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Igor.Gura",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/login?username=Anton.Huge&password=mD%23%269doVE7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Anton.Huge"
+						},
+						{
+							"key": "password",
+							"value": "mD%23%269doVE7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Igor.Gura",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trainee?username=Mari.Doyle",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainee"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Mari.Doyle"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update trainee's trainer List",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Igor.Gura\",\r\n    \"trainers\": [\r\n        {\r\n            \"username\": \"Ward.Mejia\"            \r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/trainee/2/trainers"
+			},
+			"response": []
+		},
+		{
+			"name": "Change trainee Status",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Igor.Gura\",\r\n     \"active\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/trainee/2/status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainee",
+						"2",
+						"status"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Mari.Doyle",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Shannon.Velazquez",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/login?username=Shannon.Velazquez&password=1788799703",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Shannon.Velazquez"
+						},
+						{
+							"key": "password",
+							"value": "1788799703"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Shannon.Velazquez",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trainee?username=Shannon.Velazquez",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainee"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Shannon.Velazquez"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Trainee Trainings List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trainee/trainings?username=Shannon.Velazquez&fromDate=2024-10-21&toDate=2024-11-21&trainerName=Ward&trainingType=yoga",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainee",
+						"trainings"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Shannon.Velazquez"
+						},
+						{
+							"key": "fromDate",
+							"value": "2024-10-21"
+						},
+						{
+							"key": "toDate",
+							"value": "2024-11-21"
+						},
+						{
+							"key": "trainerName",
+							"value": "Ward"
+						},
+						{
+							"key": "trainingType",
+							"value": "yoga"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change password for Shannon.Velazquez",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Shannon.Velazquez\",\r\n    \"oldPassword\": \"1788799703\",\r\n    \"newPassword\": \"1010101010\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"password"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Mari.Doyle",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
