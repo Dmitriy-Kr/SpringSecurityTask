@@ -17,8 +17,10 @@ public class AppUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
         edu.java.springsecuritytask.entity.User userFromDB = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Username %s not found".formatted(username)));
+
         return User.builder()
                 .username(userFromDB.getUsername())
                 .password(userFromDB.getPassword())
