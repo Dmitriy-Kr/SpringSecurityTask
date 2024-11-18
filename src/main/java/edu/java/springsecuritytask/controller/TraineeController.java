@@ -1,5 +1,6 @@
 package edu.java.springsecuritytask.controller;
 
+import edu.java.springsecuritytask.dto.TraineeCreatedDto;
 import edu.java.springsecuritytask.dto.TraineeDto;
 import edu.java.springsecuritytask.dto.TraineeTrainingDto;
 import edu.java.springsecuritytask.dto.TrainerDtoForTrainee;
@@ -100,10 +101,10 @@ public class TraineeController {
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "New Trainee registration")
-    public TraineeDto create(@RequestBody TraineeDto traineeDto) throws InvalidDataException {
+    public TraineeCreatedDto create(@RequestBody TraineeDto traineeDto) throws InvalidDataException {
         validateName(traineeDto.getFirstname());
         validateName(traineeDto.getLastname());
-        return mapToTraineeDto(traineeService.save(mapToTrainee(traineeDto)));
+        return traineeService.save(mapToTrainee(traineeDto));
     }
 
     @PutMapping("/{id}")

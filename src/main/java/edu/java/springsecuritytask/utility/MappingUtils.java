@@ -118,4 +118,13 @@ public class MappingUtils {
         return dto;
     }
 
+//    public static TraineeCreatedDto mapToUserCreatedDto(Trainee trainee){
+//        TraineeCreatedDto dto = new TraineeCreatedDto();
+//
+//        dto.setUsername(trainee.getUser().getUsername());
+//        dto.setPassword(trainee.getUser().getPassword());
+//
+//        return dto;
+//    }
+
 }

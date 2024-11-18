@@ -14,7 +14,7 @@ INSERT INTO gym_user (firstName, lastName, username, user_password, isActive) VA
 	('Dave', 'Batista', 'Dave.Batista', '1234567895', true),
 	('Igor', 'Gura', 'Igor.Gura', '1237767895', true),
 	('Allyson', 'Bauer', 'Allyson.Bauer', '1753706703', true),
-	('Mari', 'Doyle', 'Mari.Doyle', '1753799703', true),
+	('Mari', 'Doyle', 'Mari.Doyle', '{noop}1753799703', true),
 	('Shannon', 'Velazquez', 'Shannon.Velazquez', '1788799703', true);
 
 INSERT INTO trainer (specialization_id, gym_user_id) VALUES

@@ -1,9 +1,11 @@
 package edu.java.springsecuritytask.service;
 
+import edu.java.springsecuritytask.dto.TrainerCreatedDto;
 import edu.java.springsecuritytask.entity.*;
 import edu.java.springsecuritytask.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,26 +26,35 @@ public class TrainerService {
     private TrainerRepository trainerRepository;
     private UserRepository userRepository;
     private TrainingTypeRepository trainingTypeRepository;
-    private TraineeRepository traineeRepository;
+    private PasswordEncoder passwordEncoder;
 
     private static Logger logger = LoggerFactory.getLogger(TrainerService.class);
 
-    public TrainerService(TrainerRepository trainerRepository, UserRepository userRepository, TrainingTypeRepository trainingTypeRepository, TraineeRepository traineeRepository) {
+    public TrainerService(TrainerRepository trainerRepository,
+                          UserRepository userRepository,
+                          TrainingTypeRepository trainingTypeRepository,
+                          PasswordEncoder passwordEncoder) {
         this.trainerRepository = trainerRepository;
         this.userRepository = userRepository;
         this.trainingTypeRepository = trainingTypeRepository;
-        this.traineeRepository = traineeRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    public Trainer save(Trainer trainer) throws ServiceException {
+    public TrainerCreatedDto save(Trainer trainer) throws ServiceException {
+        String password = generatePassword();
+
         trainer.getUser().setUsername(createValidUserName(trainer));
-        trainer.getUser().setPassword(generatePassword());
+        trainer.getUser().setPassword(passwordEncoder.encode(password));
         trainer.setSpecialization(trainingTypeRepository
                 .findByTrainingType(trainer.getSpecialization().getTrainingType())
                 .orElseThrow(() -> new ServiceException("Cannot find specialization")));
         trainer.getUser().setIsActive(true);
+
         try {
-            return trainerRepository.save(trainer);
+
+            trainer = trainerRepository.save(trainer);
+            return new TrainerCreatedDto(trainer.getUser().getUsername(), password);
+
         } catch (Exception e) {
             logger.error("Error saving Trainer in the database with username {}", trainer.getUser().getUsername());
             throw new ServiceException("Error saving Trainer in the database", e);

@@ -1,5 +1,6 @@
 package edu.java.springsecuritytask.controller;
 
+import edu.java.springsecuritytask.dto.TrainerCreatedDto;
 import edu.java.springsecuritytask.dto.TrainerDto;
 import edu.java.springsecuritytask.dto.TrainerTrainingDto;
 import edu.java.springsecuritytask.entity.Trainer;
@@ -48,10 +49,10 @@ public class TrainerController {
     @PostMapping
     @ResponseBody
     @Operation(summary = "New Trainer registration")
-    public TrainerDto create(@RequestBody TrainerDto trainerDto) throws InvalidDataException, ServiceException {
+    public TrainerCreatedDto create(@RequestBody TrainerDto trainerDto) throws InvalidDataException, ServiceException {
         validateName(trainerDto.getFirstname());
         validateName(trainerDto.getLastname());
-        return mapToTrainerDto(trainerService.save(mapToTrainer(trainerDto)));
+        return trainerService.save(mapToTrainer(trainerDto));
     }
 
     @PutMapping("/{id}")

@@ -1,5 +1,6 @@
 package edu.java.springsecuritytask.service;
 
+import edu.java.springsecuritytask.dto.TraineeCreatedDto;
 import edu.java.springsecuritytask.entity.*;
 import edu.java.springsecuritytask.repository.TraineeRepository;
 import edu.java.springsecuritytask.repository.TrainerRepository;
@@ -8,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -26,20 +28,29 @@ public class TraineeService {
     private TraineeRepository traineeRepository;
     private UserRepository userRepository;
     private TrainerRepository trainerRepository;
+    private PasswordEncoder passwordEncoder;
+
     private static Logger logger = LoggerFactory.getLogger(TraineeService.class);
 
-    public TraineeService(TraineeRepository traineeRepository, UserRepository userRepository, TrainerRepository trainerRepository) {
+    public TraineeService(TraineeRepository traineeRepository, UserRepository userRepository, TrainerRepository trainerRepository, PasswordEncoder passwordEncoder) {
         this.traineeRepository = traineeRepository;
         this.userRepository = userRepository;
         this.trainerRepository = trainerRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional
-    public Trainee save(Trainee trainee) {
+    public TraineeCreatedDto save(Trainee trainee) {
+
+        String password = generatePassword();
+
         trainee.getUser().setUsername(createValidUserName(trainee));
-        trainee.getUser().setPassword(generatePassword());
+        trainee.getUser().setPassword(passwordEncoder.encode(password));
         trainee.getUser().setIsActive(true);
-        return traineeRepository.save(trainee);
+
+        trainee = traineeRepository.save(trainee);
+
+        return  new TraineeCreatedDto(trainee.getUser().getUsername(), password);
     }
 
     public Optional<Trainee> usernameAndPasswordMatching(String username, String password) throws ServiceException {
