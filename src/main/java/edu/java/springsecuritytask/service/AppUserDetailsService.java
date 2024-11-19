@@ -1,7 +1,8 @@
 package edu.java.springsecuritytask.service;
 
+import edu.java.springsecuritytask.bruteforce.BruteForceProtectionService;
+import edu.java.springsecuritytask.entity.User;
 import edu.java.springsecuritytask.repository.UserRepository;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -10,18 +11,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class AppUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
+    BruteForceProtectionService bruteForceProtectionService;
 
-    public AppUserDetailsService(UserRepository userRepository) {
+    public AppUserDetailsService(UserRepository userRepository, BruteForceProtectionService bruteForceProtectionService) {
         this.userRepository = userRepository;
+        this.bruteForceProtectionService = bruteForceProtectionService;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        if (bruteForceProtectionService.isBlocked(username)) {
+            throw new RuntimeException("Blocked due to too many failed login attempts");
+        }
 
-        edu.java.springsecuritytask.entity.User userFromDB = userRepository.findByUsername(username)
+        User userFromDB = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Username %s not found".formatted(username)));
 
-        return User.builder()
+        return org.springframework.security.core.userdetails
+                .User
+                .builder()
                 .username(userFromDB.getUsername())
                 .password(userFromDB.getPassword())
                 .authorities("USER")
