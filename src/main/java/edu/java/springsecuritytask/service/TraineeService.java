@@ -2,6 +2,7 @@ package edu.java.springsecuritytask.service;
 
 import edu.java.springsecuritytask.dto.TraineeCreatedDto;
 import edu.java.springsecuritytask.entity.*;
+import edu.java.springsecuritytask.jwtbearerauth.JwtTokenService;
 import edu.java.springsecuritytask.repository.TraineeRepository;
 import edu.java.springsecuritytask.repository.TrainerRepository;
 import edu.java.springsecuritytask.repository.UserRepository;
@@ -25,18 +26,20 @@ import static edu.java.springsecuritytask.utility.PasswordGenerator.generatePass
 @Transactional(readOnly = true)
 public class TraineeService {
 
-    private TraineeRepository traineeRepository;
-    private UserRepository userRepository;
-    private TrainerRepository trainerRepository;
-    private PasswordEncoder passwordEncoder;
+    private final TraineeRepository traineeRepository;
+    private final UserRepository userRepository;
+    private final TrainerRepository trainerRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtTokenService jwtTokenService;
 
     private static Logger logger = LoggerFactory.getLogger(TraineeService.class);
 
-    public TraineeService(TraineeRepository traineeRepository, UserRepository userRepository, TrainerRepository trainerRepository, PasswordEncoder passwordEncoder) {
+    public TraineeService(TraineeRepository traineeRepository, UserRepository userRepository, TrainerRepository trainerRepository, PasswordEncoder passwordEncoder, JwtTokenService jwtTokenService) {
         this.traineeRepository = traineeRepository;
         this.userRepository = userRepository;
         this.trainerRepository = trainerRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtTokenService = jwtTokenService;
     }
 
     @Transactional
@@ -50,7 +53,11 @@ public class TraineeService {
 
         trainee = traineeRepository.save(trainee);
 
-        return  new TraineeCreatedDto(trainee.getUser().getUsername(), password);
+        String jwtToken = jwtTokenService.getJwtToken(trainee.getUser());
+
+        trainee.getUser().setToken(jwtToken);
+
+        return  new TraineeCreatedDto(trainee.getUser().getUsername(), password, jwtToken);
     }
 
     public Optional<Trainee> usernameAndPasswordMatching(String username, String password) throws ServiceException {

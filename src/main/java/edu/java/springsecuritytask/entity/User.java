@@ -21,6 +21,8 @@ public class User {
     private String password;
     @Column
     private Boolean isActive;
+    @Column
+    private String token;
     @OneToOne(mappedBy = "user")
     private Trainee trainee;
     @OneToOne(mappedBy = "user")
@@ -37,6 +39,14 @@ public class User {
         this.username = userName;
         this.password = password;
         this.isActive = isActive;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public Long getId() {

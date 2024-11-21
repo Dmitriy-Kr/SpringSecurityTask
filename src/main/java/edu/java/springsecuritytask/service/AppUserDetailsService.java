@@ -3,6 +3,7 @@ package edu.java.springsecuritytask.service;
 import edu.java.springsecuritytask.bruteforce.BruteForceProtectionService;
 import edu.java.springsecuritytask.entity.User;
 import edu.java.springsecuritytask.repository.UserRepository;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,9 +20,9 @@ public class AppUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, AuthenticationServiceException {
         if (bruteForceProtectionService.isBlocked(username)) {
-            throw new RuntimeException("Blocked due to too many failed login attempts");
+            throw new AuthenticationServiceException("Blocked due to too many failed login attempts");
         }
 
         User userFromDB = userRepository.findByUsername(username)

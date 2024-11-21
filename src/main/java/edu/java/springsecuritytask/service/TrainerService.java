@@ -2,6 +2,7 @@ package edu.java.springsecuritytask.service;
 
 import edu.java.springsecuritytask.dto.TrainerCreatedDto;
 import edu.java.springsecuritytask.entity.*;
+import edu.java.springsecuritytask.jwtbearerauth.JwtTokenService;
 import edu.java.springsecuritytask.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,23 +24,27 @@ import static edu.java.springsecuritytask.utility.PasswordGenerator.generatePass
 @Transactional(readOnly = true)
 public class TrainerService {
 
-    private TrainerRepository trainerRepository;
-    private UserRepository userRepository;
-    private TrainingTypeRepository trainingTypeRepository;
-    private PasswordEncoder passwordEncoder;
+    private final TrainerRepository trainerRepository;
+    private final UserRepository userRepository;
+    private final TrainingTypeRepository trainingTypeRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtTokenService jwtTokenService;
 
     private static Logger logger = LoggerFactory.getLogger(TrainerService.class);
 
     public TrainerService(TrainerRepository trainerRepository,
                           UserRepository userRepository,
                           TrainingTypeRepository trainingTypeRepository,
-                          PasswordEncoder passwordEncoder) {
+                          PasswordEncoder passwordEncoder,
+                          JwtTokenService jwtTokenService) {
         this.trainerRepository = trainerRepository;
         this.userRepository = userRepository;
         this.trainingTypeRepository = trainingTypeRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtTokenService = jwtTokenService;
     }
 
+    @Transactional
     public TrainerCreatedDto save(Trainer trainer) throws ServiceException {
         String password = generatePassword();
 
@@ -53,7 +58,12 @@ public class TrainerService {
         try {
 
             trainer = trainerRepository.save(trainer);
-            return new TrainerCreatedDto(trainer.getUser().getUsername(), password);
+
+            String jwtToken = jwtTokenService.getJwtToken(trainer.getUser());
+
+            trainer.getUser().setToken(jwtToken);
+
+            return new TrainerCreatedDto(trainer.getUser().getUsername(), password, jwtToken);
 
         } catch (Exception e) {
             logger.error("Error saving Trainer in the database with username {}", trainer.getUser().getUsername());
