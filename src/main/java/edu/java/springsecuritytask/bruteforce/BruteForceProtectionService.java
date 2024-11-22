@@ -14,8 +14,8 @@ public class BruteForceProtectionService {
     private final Map<String, Long> lockCache = new ConcurrentHashMap<>();
 
     public void loginSuccess(String key) {
-        attemptsCache.remove(key); // Clear failed attempts on successful login
-        lockCache.remove(key); // Unlock user on successful login
+        attemptsCache.remove(key);
+        lockCache.remove(key);
     }
 
     public void failLogin(String key) {
@@ -23,7 +23,7 @@ public class BruteForceProtectionService {
         attempts++;
         attemptsCache.put(key, attempts);
         if (attempts >= MAX_ATTEMPT) {
-            lockCache.put(key, System.currentTimeMillis()); // Lock user if max attempts exceeded
+            lockCache.put(key, System.currentTimeMillis());
         }
     }
 
@@ -34,10 +34,10 @@ public class BruteForceProtectionService {
 
         long lockTime = lockCache.get(key);
         if (System.currentTimeMillis() - lockTime > LOCK_TIME) {
-            lockCache.remove(key); // Remove lock if lock time has expired
+            lockCache.remove(key);
             return false;
         }
 
-        return true; // User is still locked
+        return true;
     }
 }

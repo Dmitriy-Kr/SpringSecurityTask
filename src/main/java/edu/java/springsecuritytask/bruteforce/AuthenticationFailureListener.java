@@ -15,9 +15,8 @@ class AuthenticationFailureListener implements ApplicationListener<Authenticatio
 
     @Override
     public void onApplicationEvent(AuthenticationFailureBadCredentialsEvent event) {
-        bruteForceProtectionService.failLogin(event.getAuthentication().getName());
 
-        System.out.println("AuthenticationFailureBadCredentialsEvent : " + event.getAuthentication().getName());
+        bruteForceProtectionService.failLogin(event.getAuthentication().getName());
 
     }
 }

@@ -25,6 +25,7 @@ import static edu.java.springsecuritytask.utility.MappingUtils.mapToTrainee;
 import static edu.java.springsecuritytask.utility.MappingUtils.mapToTraineeDto;
 import static edu.java.springsecuritytask.utility.Validation.*;
 
+@CrossOrigin(maxAge = 3600)
 @Controller
 @RequestMapping("/trainee")
 public class TraineeController {

@@ -76,6 +76,5 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("An error occurred while processing token from your request");
         }
-//        filterChain.doFilter(request, response);
     }
 }

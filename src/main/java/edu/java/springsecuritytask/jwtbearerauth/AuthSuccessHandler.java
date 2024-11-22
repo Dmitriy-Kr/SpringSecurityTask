@@ -5,6 +5,8 @@ import edu.java.springsecuritytask.repository.UserRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +21,8 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 
     private UserRepository userRepository;
     private JwtTokenService jwtTokenService;
+
+    private static Logger logger = LoggerFactory.getLogger(AuthSuccessHandler.class);
 
     public AuthSuccessHandler(UserRepository userRepository, JwtTokenService jwtTokenService) {
         this.userRepository = userRepository;
@@ -43,16 +47,16 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 
         response.setStatus(HttpServletResponse.SC_OK);
 
-        PrintWriter out = response.getWriter();
+        try (PrintWriter out = response.getWriter()) {
 
-        try {
             response.setContentType("text/html;charset=UTF-8");
 
             out.print("JWTToken: ");
             out.print(jwtToken);
 
-        } finally {
-            out.close();
+        } catch (Exception ex){
+            logger.error("An error occurred while creating token", ex);
+            throw new AuthenticationServiceException(ex.getMessage());
         }
 
     }

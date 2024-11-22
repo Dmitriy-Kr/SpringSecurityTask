@@ -15,9 +15,8 @@ class AuthenticationSuccessEventListener implements ApplicationListener<Authenti
 
     @Override
     public void onApplicationEvent(AuthenticationSuccessEvent event) {
-        bruteForceProtectionService.loginSuccess(event.getAuthentication().getName());
 
-        System.out.println("AuthenticationSuccessEvent : " + event.getAuthentication().getName());
+        bruteForceProtectionService.loginSuccess(event.getAuthentication().getName());
 
     }
 }
