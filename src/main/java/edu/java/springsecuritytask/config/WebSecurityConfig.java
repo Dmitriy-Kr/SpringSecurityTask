@@ -45,6 +45,8 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/trainee", "/trainer").permitAll()
                         .requestMatchers("/swagger-ui/**", "/actuator/**").permitAll()
                         .requestMatchers(toH2Console()).permitAll()
+                        .requestMatchers("/trainee/**").hasRole("TRAINEE")
+                        .requestMatchers("/trainer/**").hasRole("TRAINER")
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login.successHandler(authSuccessHandler))

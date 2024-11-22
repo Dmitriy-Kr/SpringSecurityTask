@@ -33,7 +33,7 @@ public class AppUserDetailsService implements UserDetailsService {
                 .builder()
                 .username(userFromDB.getUsername())
                 .password(userFromDB.getPassword())
-                .authorities("USER")
+                .roles(userFromDB.getTrainee() != null ? "TRAINEE" : "TRAINER")
                 .disabled(!userFromDB.isActive())
                 .build();
     }
