@@ -41,11 +41,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         String authHeader = request.getHeader(HEADER_NAME);
         if (authHeader == null || !authHeader.startsWith(BEARER_PREFIX)) {
+
             filterChain.doFilter(request, response);
+
             return;
+
         }
 
         try {
+
             String jwtToken = authHeader.substring(BEARER_PREFIX.length());
             String username = jwtTokenService.extractUsername(jwtToken);
 
@@ -70,11 +74,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     SecurityContextHolder.setContext(context);
                 }
             }
-            filterChain.doFilter(request, response);
+
         } catch (Exception e) {
             logger.error("An error occurred while processing token from request", e);
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("An error occurred while processing token from your request");
+            return;
         }
+
+        filterChain.doFilter(request, response);
+
     }
 }

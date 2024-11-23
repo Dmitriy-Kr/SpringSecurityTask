@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -39,8 +40,18 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
 //                .cors(Customizer.withDefaults())
+//                .cors(cors -> cors.configurationSource(request -> {
+//                    var corsConfiguration = new CorsConfiguration();
+//                    corsConfiguration.setAllowedOriginPatterns(List.of("https://example.com"));
+//                    corsConfiguration.setAllowedMethods(List.of("GET", "POST"));
+//                    corsConfiguration.setAllowedHeaders(List.of("*"));
+//                    corsConfiguration.setAllowCredentials(true);
+//                    return corsConfiguration;
+//                }))
                 .csrf(AbstractHttpConfigurer::disable)
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
+                .sessionManagement(httpSecuritySessionManagementConfigurer ->
+                        httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.NEVER))
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers(HttpMethod.POST, "/trainee", "/trainer").permitAll()
                         .requestMatchers("/swagger-ui/**", "/actuator/**").permitAll()
