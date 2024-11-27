@@ -53,6 +53,7 @@ public class WebSecurityConfig {
                 .sessionManagement(httpSecuritySessionManagementConfigurer ->
                         httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers("/").permitAll()
                         .requestMatchers(HttpMethod.POST, "/trainee", "/trainer").permitAll()
                         .requestMatchers("/swagger-ui/**", "/actuator/**").permitAll()
                         .requestMatchers(toH2Console()).permitAll()
